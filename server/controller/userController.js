@@ -5,21 +5,28 @@ const { registerHelper } = require("../helpers/userHelper");
 const { response } = require("express");
 
 const UserRegister = async (req, res) => {
-  registerHelper(req.body)
-    .then((response) => {
-      console.log("ctl inside then",);
+    try{
+        registerHelper(req.body)
+        .then((response) => {
+          console.log("ctl inside then",);
+    
+          if (response) {
+            console.log("if response.user controller");
+            res.status(200).json(response);
+          } else {
+            console.log("else 500 ctl");
+            res.status(500).json(response);
+          }
+        })
+        .catch((err) => {
+          res.status(500).json({ mess: "server err...", err });
+        });
 
-      if (response) {
-        console.log("if response.user controller");
-        res.status(200).json(response);
-      } else {
-        console.log("else response.user contoller");
-        res.status(500).json(response);
-      }
-    })
-    .catch((err) => {
-      res.status(500).json({ mess: "server err...", err });
-    });
+    }
+    catch(error){
+        console.log(error)
+    }
+
 };
 
 

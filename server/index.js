@@ -19,7 +19,8 @@ app.use(helmet());
 app.use(morgan("common"))
 
 app.use('/api/users',userRouter)
-app.use('/api/auth',authRouter)
+
+// app.use('/api/auth',authRouter)
 
 
 
