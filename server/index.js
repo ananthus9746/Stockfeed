@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"))
 
-app.use('/api/users',userRouter)
+app.use('/api/user',userRouter)
 
 // app.use('/api/auth',authRouter)
 

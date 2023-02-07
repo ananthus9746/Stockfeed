@@ -3,7 +3,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
 //REGISTER
-const registerHelper = async (userData) => {
+const RegisterHelper = async (userData) => {
   console.log("Register helper");
 
   try {
@@ -48,4 +48,38 @@ const registerHelper = async (userData) => {
   }
 };
 
-module.exports = { registerHelper };
+
+const LoginrHelper=async(userData)=>{
+  console.log("entered user login helper")
+
+  try{
+
+    return new Promise(async(resolve,reject)=>{
+
+      const user = await User.findOne({ email:userData.email });
+      if (!user) {
+        // res.status(401).json("user not found invalid email");
+        resolve({invalidEmail:"invalid email"})
+      } else {
+        const validPassword = await bcrypt.compare(
+          userData.password,
+          user.password
+        );
+        if (!validPassword) {
+          resolve({invaliPassword:"invalid password"})
+        } else {
+          // res.status(200).json({message:"Sucessfully loged in",user});
+          resolve({message:"Sucessfully loged in",user})
+        }
+      }
+   
+    })
+
+  }catch(erorr){
+    console.log(erorr)
+  }
+
+}
+
+
+module.exports = { RegisterHelper,LoginrHelper };

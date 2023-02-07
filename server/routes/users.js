@@ -26,8 +26,6 @@ router.put("/:id",async(req,res)=>{
        }catch(err){
 
        }
-   
-
     }
     else{
         return res.status(403).json("you can update your account")
