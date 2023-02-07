@@ -4,9 +4,11 @@ const mongoose =require('mongoose')
 const dotenv =require("dotenv")
 const helmet =require("helmet")
 const morgan=require("morgan")
-
 dotenv.config()
 mongoose.set('strictQuery', false);
+
+const userRouter = require('./routes/users')
+const authRouter = require('./routes/auth')
 
 
 
@@ -16,6 +18,8 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"))
 
+app.use('/api/users',userRouter)
+app.use('/api/auth',authRouter)
 
 
 
