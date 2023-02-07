@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const slugify=require("slugify");
 
 //REGISTER
 const RegisterHelper = async (userData) => {
@@ -33,6 +34,7 @@ const RegisterHelper = async (userData) => {
           username: userData.username,
           email: userData.email,
           password: hashedPassword,
+          slug:slugify(userData.username)
         });
 
         console.log("insde try bloch helpers user register.");
@@ -80,6 +82,16 @@ const LoginrHelper=async(userData)=>{
   }
 
 }
+const UpdateUserHelper= async(userId,paramsId)=>{
+  console.log("entered upadteuser helper",userId,paramsId)
+
+  try{
+    
+  }catch(erorr){
+    console.log(erorr)
+  }
+
+}
 
 
-module.exports = { RegisterHelper,LoginrHelper };
+module.exports = { RegisterHelper,LoginrHelper,UpdateUserHelper };

@@ -1,7 +1,7 @@
 const router =require('express').Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
-const {UserRegister,UserLogin}=require('../controller/userController')
+const {UserRegister,UserLogin,UpdateUser}=require('../controller/userController')
 
 
 
@@ -12,25 +12,11 @@ router.post("/register",UserRegister);
 //USER LOGIN
 router.post("/login",UserLogin)
 
-
+//ananthuLatha:id: 63e2a79ad5cfee57312f8b7a
 //update user
-router.put("/:id",async(req,res)=>{
-    if(req.body.userId === req.params.id || req.user.isAdmin){
-       try{
-        if(req.body.password){
-            const salt = await bcrypt
-        }
-        else{
+router.put("/:id",UpdateUser)
 
-        }
-       }catch(err){
 
-       }
-    }
-    else{
-        return res.status(403).json("you can update your account")
-    }
-})
 //delete user
 //get a user
 //follow a user

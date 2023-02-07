@@ -87,6 +87,11 @@ const UserSchema = new mongoose.Schema({
     verified:{
         type:Boolean,
         default:false
+    },
+    slug:{
+        type:String,
+        require:true,
+        unique:true
     }
 },
 {timestamps:true }

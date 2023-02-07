@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
-const { RegisterHelper,LoginrHelper } = require("../helpers/userHelper");
+const { RegisterHelper,LoginrHelper,UpdateUserHelper } = require("../helpers/userHelper");
 const { response } = require("express");
 
 const UserRegister = async (req, res) => {
@@ -54,4 +54,29 @@ const UserLogin = async (req, res) => {
 
 };
 
-module.exports = { UserRegister, UserLogin };
+
+const UpdateUser=(req,res)=>{
+
+  console.log("update user params and body...",req.body)
+  console.log("update user params..",req.params.id)
+
+
+  try{
+
+    UpdateUserHelper(req.body,req.params.id).then((response)=>{
+
+      console.log("updated user ctl..",response)
+    
+    }).catch((err)=>{
+      console.log(err)
+    })
+  
+
+  }catch(erorr){
+    console.log(error)
+  }
+
+ 
+}
+
+module.exports = { UserRegister, UserLogin ,UpdateUser};
